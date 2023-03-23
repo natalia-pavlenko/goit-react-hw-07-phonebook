@@ -24,10 +24,10 @@ const persistConfig = {
 
 };
 
-const rootReducer = combineReducers({
-  contacts: contactsReducer ,
-  filter: filterReducer,
-});
+// const rootReducer = combineReducers({
+//   contacts: contactsReducer ,
+//   filter: filterReducer,
+// });
 const persistRootReducer = persistReducer(persistConfig, contactsReducer);
 
 export const store = configureStore({
