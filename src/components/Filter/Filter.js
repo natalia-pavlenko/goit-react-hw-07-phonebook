@@ -7,6 +7,7 @@ import { FilterDiv, FilterLabel, FilterInput } from './Filter.styled';
 
 const Filter = () => {
   const filter = useSelector(getFilter);
+  console.log(filter);
   const dispatch = useDispatch();
   const onChange = event => {
     dispatch(filterContacts(event.target.value));
