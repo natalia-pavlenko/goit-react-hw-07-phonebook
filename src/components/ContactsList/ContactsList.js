@@ -1,5 +1,4 @@
 import { useDispatch } from 'react-redux';
-import { deleteContact } from 'redux/contactsSlice';
 import { useSelector } from 'react-redux';
 import {
   ContactsUl,
@@ -9,12 +8,13 @@ import {
   ContactsBtn,
   ContactsDiv,
 } from './ContactsList.styled';
-import { getContacts } from 'redux/selectors';
+import { getContacts, getFilter } from 'redux/selectors';
 import { useEffect } from 'react';
-import { fetchContacts } from 'redux/contactsOperation';
+import { deleteContact, fetchContacts } from 'redux/contactsOperation';
 
 const ContactsList = () => {
   const contacts = useSelector(getContacts);
+  const filter = useSelector(getFilter);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -23,14 +23,15 @@ const ContactsList = () => {
 
   return (
     <ContactsUl>
-      {contacts.length > 0 &&
-        contacts.map(({ id, name, number }) => {
+      {contacts
+        .filter(({ name }) => name.toLowerCase().includes(filter.toLowerCase()))
+        .map(({ id, name, phone }) => {
           return (
             <ContactsItem key={id}>
               <ContactsDiv>
                 <ContactsText>
                   <ContactsSpan> {name}</ContactsSpan>:{' '}
-                  <ContactsSpan>{number}</ContactsSpan>
+                  <ContactsSpan>{phone}</ContactsSpan>
                 </ContactsText>
                 <ContactsBtn
                   type="button"

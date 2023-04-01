@@ -11,7 +11,6 @@ import {
 } from './ContactForm.styled';
 import { addContact } from 'redux/contactsOperation';
 
-
 const ContactForm = ({ onSubmit }) => {
   const [name, setName] = useState('');
   const [phone, setNumber] = useState('');
