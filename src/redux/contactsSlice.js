@@ -40,17 +40,18 @@ const contactsSlice = createSlice({
       state.isLoading = true;
       state.error = null;
     },
+
     [deleteContact.fulfilled](state, action) {
       state.isLoading = false;
       state.error = null;
-      const index = state.items.indexOf(action.payload.id)
-      state.items.splice(index, 1);
+      state.items = state.items.filter(
+        contact => contact.id !== action.payload.id
+      );
     },
     [deleteContact.rejected](state, action) {
       state.error = action.payload;
       state.isLoading = false;
     },
-
   },
 });
 
