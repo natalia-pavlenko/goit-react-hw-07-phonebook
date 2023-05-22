@@ -17,17 +17,11 @@ import {
 import { filterReducer } from './filterSlice';
 import {contactsReducer  } from './contactsSlice';
 
-
 const persistConfig = {
   key: 'contacts',
   storage,
-
 };
 
-// const rootReducer = combineReducers({
-//   contacts: contactsReducer ,
-//   filter: filterReducer,
-// });
 const persistRootReducer = persistReducer(persistConfig, contactsReducer);
 
 export const store = configureStore({
